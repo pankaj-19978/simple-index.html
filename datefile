@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Proposal For You ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe6e6, #ffb3ba);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        p {
+            color: #4a4a4a;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .gif-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        /* Photo Grid / Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #ff4d6d;
+        }
+
+        .reasons {
+            text-align: left;
+            background: #fff0f3;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid #ff4d6d;
+        }
+
+        .reasons h3 {
+            color: #ff4d6d;
+            margin-bottom: 10px;
+        }
+
+        .reasons ul {
+            list-style-type: '✨ ';
+            padding-left: 20px;
+        }
+
+        .reasons li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            height: 50px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 35px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background-color: #6c757d;
+            color: white;
+            position: absolute;
+        }
+
+        /* Floating Hearts Animation */
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff4d6d;
+            animation: float 4s linear infinite;
+            bottom: -50px;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Music Controls */
+        .audio-player {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Music -->
+    <!-- Note: Paste your favorite romantic song URL in the src below -->
+    <audio id="bgMusic" loop src="https://soundhelix.com"></audio>
+
+    <div class="container" id="mainContainer">
+        <div class="gif-container">
+            <!-- Cute Placeholder GIF -->
+            <img id="statusGif" src="https://giphy.com" alt="Cute Bear">
+        </div>
+
+        <h1>Hey Gorgeous! ❤️</h1>
+        <p>Mujhe lagta hai ki hum dono ek sath kaafi awesome dikhte hain. Isliye maine socha kyun na tumse ek bohot hi important sawaal poochha jaye...</p>
+
+        <!-- Reasons Section -->
+        <div class="reasons">
+            <h3>3 Reasons Why You Should Say YES:</h3>
+            <ul>
+                <li>Tumhara smile poori duniya ko bright kar deta hai.</li>
+                <li>Humein ek dusre ke sath aur zyada memories banani chahiye.</li>
+                <li>Maine ek bohot hi amazing date plan ki hai jo tumhe pasand aayegi!</li>
+            </ul>
+        </div>
+
+        <!-- Optional Photo Gallery (Apni aur uski pics ka link daalein) -->
+        <p style="font-size: 0.9rem; font-weight: bold; color: #ff4d6d;">Our Beautiful Moments (Or Your Favorites) ✨</p>
+        <div class="gallery">
+            <img src="https://unsplash.com" alt="Pic 1">
+            <img src="https://unsplash.com" alt="Pic 2">
+            <img src="https://unsplash.com" alt="Pic 3">
+        </div>
+
+        <h2>Will you go on a coffee/dinner date with me? ☕✨</h2>
+
+        <div class="btn-group">
+            <button id="yesBtn" onclick="celebrate()">YES! 💖</button>
+            <button id="noBtn" onmouseover="moveButton()">No 😢</button>
+        </div>
+
+        <div class="audio-player">
+            <p>🎵 Click anywhere on the page to start the romantic music!</p>
+        </div>
+    </div>
+
+    <script>
+        // Start background music on first user interaction
+        document.body.addEventListener('click', function() {
+            var audio = document.getElementById('bgMusic');
+            audio.play().catch(function(error) {
+                console.log("Audio play blocked by browser.");
+            });
+        }, { once: true });
+
+        // Function to move the NO button when hovered
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const container = document.getElementById('mainContainer');
+            
+            // Get container boundaries
+            const containerRect = container.getBoundingClientRect();
+            
+            // Calculate random positions within the container
+            const maxX = containerRect.width - noBtn.offsetWidth - 40;
+            const maxY = containerRect.height - noBtn.offsetHeight - 40;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            // Apply new positions
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        // Function when she clicks YES
+        function celebrate() {
+            const container = document.getElementById('mainContainer');
+            
+            // Change content to celebration
+            container.innerHTML = `
+                <div class="gif-container">
+                    <img src="https://giphy.com" alt="Happy Dance">
+                </div>
+                <h1 style="color: #ff4d6d;">Yayyyy! 🎉❤️</h1>
+                <p style="font-size: 1.4rem; font-weight: bold;">I knew you would say YES! 😍</p>
+                <p>Ab jaldi se mujhe WhatsApp par message karo aur batao kab chalna hai! I am super excited! 🚗💨</p>
+            `;
+
+            // Start falling hearts animation
+            setInterval(createHeart, 300);
+        }
+
+        // Function to create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
+
