@@ -197,6 +197,7 @@
 
         <div class="audio-player">
             <p>🎵 Click anywhere on the page to start the romantic music!</p>
+        <audio id="bgMusic" src="music.mp3" loop></audio>
         </div>
     </div>
 
